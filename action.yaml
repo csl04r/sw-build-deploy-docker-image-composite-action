@@ -62,9 +62,9 @@ runs:
       with:
         push: true
         context: '${{ inputs.buildcontext }}'
-          tags: |
-            ${{inputs.artifactory_registry}}/${{ steps.lowercasereponame.outputs.git_repo_name }}:${{ github.RUN_NUMBER }}
-            ${{inputs.artifactory_registry}}/${{ steps.lowercasereponame.outputs.git_repo_name }}:latest
+        tags: |
+          ${{inputs.artifactory_registry}}/${{ steps.lowercasereponame.outputs.git_repo_name }}:${{ github.RUN_NUMBER }}
+          ${{inputs.artifactory_registry}}/${{ steps.lowercasereponame.outputs.git_repo_name }}:latest
 
 
 branding:
