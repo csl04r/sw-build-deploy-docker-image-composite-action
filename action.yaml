@@ -7,6 +7,22 @@ inputs:
     default: '.'
     required: false
 
+  artifactory_registry:
+    description: 'Artifactory URL'
+    default: '.'
+    required: true
+
+  artifactory_username:
+    description: 'Artifactory Username'
+    default: '.'
+    required: true
+
+  artifactory_api_key:
+    description: 'Artifactory API KEY'
+    default: '.'
+    required: true
+
+
 runs:
   using: "composite"
   steps:
@@ -15,7 +31,7 @@ runs:
       id: remove-buildx-context
       run: |
         docker context rm -f builders
-      shell: bash   
+      shell: bash
     - name: Setup docker context for buildx
 #       continue-on-error: true
       id: buildx-context
@@ -27,13 +43,13 @@ runs:
       with:
         endpoint: builders
         driver-opts: image=docker.artifactory.sherwin.com/sherwin-williams-co/sw-moby-buildkit:5
-    
+
     - name: Log in to artifactory docker registry
       uses: docker/login-action@v1
       with:
-        registry: ${{ secrets.ARTIFACTORY_REGISTRY }}
-        username: ${{ secrets.ARTIFACTORY_USERNAME }}
-        password: ${{ secrets.ARTIFACTORY_API_KEY }}
+        registry: ${{ inputs.artifactory_registry }}
+        username: ${{ inputs.artifactory_username }}
+        password: ${{ inputs.artifactory_api_key }}
 
     - name: convert reponame to lowercase
       id: lowercasereponame
@@ -47,8 +63,8 @@ runs:
         push: true
         context: ${{ inputs.buildcontext }}
           tags: |
-            ${{secrets.ARTIFACTORY_REGISTRY}}/${{ steps.lowercasereponame.outputs.git_repo_name }}:${{ github.RUN_NUMBER }}
-            ${{secrets.ARTIFACTORY_REGISTRY}}/${{ steps.lowercasereponame.outputs.git_repo_name }}:latest
+            ${{inputs.artifactory_registry}}/${{ steps.lowercasereponame.outputs.git_repo_name }}:${{ github.RUN_NUMBER }}
+            ${{inputs.artifactory_registry}}/${{ steps.lowercasereponame.outputs.git_repo_name }}:latest
 
 
 branding:
