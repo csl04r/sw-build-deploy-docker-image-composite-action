@@ -11,13 +11,13 @@ runs:
   using: "composite"
   steps:
     - name: Remove docker context for buildx
-      continue-on-error: true
+#       continue-on-error: true
       id: remove-buildx-context
       run: |
         docker context rm -f builders
       shell: bash   
     - name: Setup docker context for buildx
-      continue-on-error: true
+#       continue-on-error: true
       id: buildx-context
       run: |
         docker context create builders
