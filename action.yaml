@@ -65,7 +65,7 @@ runs:
     - name: convert reponame to lowercase
       id: lowercasereponame
       run: |
-        repoName=`echo "${{github.repository}}" | tr '[:upper:]' '[:lower:]'`
+        repoName=`echo "${{inputs.image_name}}" | tr '[:upper:]' '[:lower:]'`
         echo "::set-output name=git_repo_name::${repoName}"
       shell: bash
     - name: Build and publish container image
@@ -76,8 +76,8 @@ runs:
         file: '${{inputs.dockerfile_path}}'
         build-args: '${{inputs.docker_build_args}}'
         tags: |
-          ${{inputs.artifactory_registry}}/${{inputs.image_name}}:${{ github.RUN_NUMBER }}
-          ${{inputs.artifactory_registry}}/${{inputs.image_name}}:latest
+          ${{inputs.artifactory_registry}}/${{steps.lowercasereponame.outputs.git_repo_name}}:${{ github.RUN_NUMBER }}
+          ${{inputs.artifactory_registry}}/${{steps.lowercasereponame.outputs.git_repo_name}}:latest
 
 
 branding:
