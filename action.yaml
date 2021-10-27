@@ -2,6 +2,7 @@ name: Docker build and deploy action
 description: Docker image build and deploy into artifactory
 author: DA Team <da.team@sherwin.com>
 inputs:
+
   buildcontext:
     description: 'Build Context'
     default: '.'
@@ -17,22 +18,30 @@ inputs:
     default: '.'
     required: true
 
-  artifactory_api_key:
-    description: 'Artifactory API KEY'
-    default: '.'
-    required: true
+#   artifactory_api_key:
+#     description: 'Artifactory API KEY'
+#     default: '.'
+#     required: true
   dockerfile_path:
     description: 'Dockerfile Path'
     default: 'Dockerfile'
     required: false
+    
   docker_build_args:
     description: 'Dockerfile Build Arguments'
     default: ''
     required: false
+    
   image_name:
     description: 'Dockerfile Build Arguments'
     default: '${{github.repository}}'
     required: false
+    
+secrets:
+  artifactory_api_key:
+    description: 'Artifactory API KEY'
+    default: '.'
+    required: true
 
 runs:
   using: "composite"
@@ -58,7 +67,7 @@ runs:
       with:
         registry: '${{ inputs.artifactory_registry }}'
         username: '${{ inputs.artifactory_username }}'
-        password: '${{ inputs.artifactory_api_key }}'
+        password: '${{ secrets.artifactory_api_key }}'
 
     - name: convert reponame to lowercase
       id: lowercasereponame
