@@ -40,7 +40,7 @@ runs:
     - name: Setup docker context for buildx
       id: buildx-context
       run: |
-        if [ docker context inspect builders ]
+        if  docker context inspect builders ;
         then
           echo "Docker Builders context exist!!"
         else
