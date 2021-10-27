@@ -21,6 +21,14 @@ inputs:
     description: 'Artifactory API KEY'
     default: '.'
     required: true
+  dockerfile_path:
+    description: 'Dockerfile Path'
+    default: '.'
+    required: false
+  docker_build_args:
+    description: 'Dockerfile Build Arguments'
+    default: ''
+    required: false
 
 
 runs:
@@ -62,6 +70,8 @@ runs:
       with:
         push: true
         context: '${{ inputs.buildcontext }}'
+        file: '${inputs.dockerfile_path}'
+        build-args: '${inputs.docker_build_args}'
         tags: |
           ${{inputs.artifactory_registry}}/${{ steps.lowercasereponame.outputs.git_repo_name }}:${{ github.RUN_NUMBER }}
           ${{inputs.artifactory_registry}}/${{ steps.lowercasereponame.outputs.git_repo_name }}:latest
