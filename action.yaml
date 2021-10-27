@@ -29,7 +29,10 @@ inputs:
     description: 'Dockerfile Build Arguments'
     default: ''
     required: false
-
+  image_name:
+    description: 'Dockerfile Build Arguments'
+    default: '${{github.repository}}'
+    required: false
 
 runs:
   using: "composite"
@@ -73,8 +76,8 @@ runs:
         file: '${{inputs.dockerfile_path}}'
         build-args: '${{inputs.docker_build_args}}'
         tags: |
-          ${{inputs.artifactory_registry}}/${{ steps.lowercasereponame.outputs.git_repo_name }}:${{ github.RUN_NUMBER }}
-          ${{inputs.artifactory_registry}}/${{ steps.lowercasereponame.outputs.git_repo_name }}:latest
+          ${{inputs.artifactory_registry}}/${{inputs.image_name}}:${{ github.RUN_NUMBER }}
+          ${{inputs.artifactory_registry}}/${{inputs.image_name}}:latest
 
 
 branding:
