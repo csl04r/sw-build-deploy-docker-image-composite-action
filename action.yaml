@@ -10,18 +10,17 @@ inputs:
 
   artifactory_registry:
     description: 'Artifactory URL'
-    default: '.'
-    required: true
+    default: 'docker.artifactory.sherwin.com'
+    required: false
 
   artifactory_username:
     description: 'Artifactory Username'
-    default: '.'
     required: true
 
-#   artifactory_api_key:
-#     description: 'Artifactory API KEY'
-#     default: '.'
-#     required: true
+  artifactory_api_key:
+    description: 'Artifactory API KEY'
+    required: true
+    
   dockerfile_path:
     description: 'Dockerfile Path'
     default: 'Dockerfile'
@@ -37,10 +36,10 @@ inputs:
     default: '${{github.repository}}'
     required: false
     
-secrets:
-  artifactory_api_key:
-    description: 'Artifactory API KEY'
-    required: true
+# secrets:
+#   artifactory_api_key:
+#     description: 'Artifactory API KEY'
+#     required: true
 
 runs:
   using: "composite"
