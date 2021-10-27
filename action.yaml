@@ -40,7 +40,6 @@ inputs:
 secrets:
   artifactory_api_key:
     description: 'Artifactory API KEY'
-    default: '.'
     required: true
 
 runs:
