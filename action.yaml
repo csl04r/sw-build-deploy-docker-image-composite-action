@@ -37,17 +37,22 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Remove docker context for buildx
-#       continue-on-error: true
-      id: remove-buildx-context
-      run: |
-        docker context rm -f builders
-      shell: bash
+#    - name: Remove docker context for buildx
+##       continue-on-error: true
+#      id: remove-buildx-context
+#      run: |
+#        docker context rm -f builders
+#      shell: bash
     - name: Setup docker context for buildx
 #       continue-on-error: true
       id: buildx-context
       run: |
-        docker context create builders
+        if [ docker context inspect builders ]
+        then
+          echo "Docker Builders context exist!!"
+        else
+          docker context create builders
+        fi
       shell: bash
     - name: Setup docker buildx
       uses: docker/setup-buildx-action@v1
