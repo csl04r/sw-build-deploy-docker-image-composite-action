@@ -65,7 +65,7 @@ runs:
       with:
         registry: '${{ inputs.artifactory_registry }}'
         username: '${{ inputs.artifactory_username }}'
-        password: '${{ secrets.artifactory_api_key }}'
+        password: '${{ inputs.artifactory_api_key }}'
 
     - name: convert reponame to lowercase
       id: lowercasereponame
