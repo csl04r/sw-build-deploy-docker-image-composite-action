@@ -23,7 +23,7 @@ inputs:
     required: true
   dockerfile_path:
     description: 'Dockerfile Path'
-    default: '.'
+    default: 'Dockerfile'
     required: false
   docker_build_args:
     description: 'Dockerfile Build Arguments'
