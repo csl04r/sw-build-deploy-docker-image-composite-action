@@ -4,12 +4,13 @@
 ### Parameters: 
 Name | Type |        | Default |
 ---  | ---  | ---------- | ------- |
-`artifactory_registry`| String | Required
-`artifactory_username` | String | Required
-`artifactory_api_key` | String | Required
-`dockerfile_path` | String | *Optional*  | `Dockerfile`
-`image_name`      | String | *Optional*  | `${{ github.repository }}`
-`docker_build_args` | String | *Optional*
+`artifactory_registry`| Secret | Required*
+`artifactory_username` | Secret | Required*
+`artifactory_api_key` | Secret | Required*
+`dockerfile_path` |  | *Optional*  | `Dockerfile`
+`image_name`      |  | *Optional*  | `${{ github.repository }}`
+`docker_build_args` |  | *Optional*
+`buildcontext` | | *Optional* | `.`
 
 
 Usage:
