@@ -7,10 +7,10 @@ Name | Type |        | Default |
 `artifactory_registry`| Secret | Required*
 `artifactory_username` | Secret | Required*
 `artifactory_api_key` | Secret | Required*
-`dockerfile_path` |  | *Optional*  | `Dockerfile`
-`image_name`      |  | *Optional*  | `${{ github.repository }}`
-`docker_build_args` |  | *Optional*
-`buildcontext` | | *Optional* | `.`
+`dockerfile_path` | Path | *Optional*  | `Dockerfile`
+`image_name`      | String | *Optional*  | `${{ github.repository }}`
+`docker_build_args` | String | *Optional*
+`buildcontext` | Path | *Optional* | `.`
 
 
 Usage:
