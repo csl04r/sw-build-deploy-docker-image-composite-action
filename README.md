@@ -17,7 +17,7 @@ Usage:
 ```yaml
 jobs:
   build-deploy:
-    runs-on: sw-rancher-runnerset
+    runs-on: sw-ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       
