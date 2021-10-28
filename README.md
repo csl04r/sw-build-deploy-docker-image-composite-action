@@ -9,7 +9,7 @@ Name | Type |        | Default |
 `artifactory_api_key` | String | Required
 `dockerfile_path` | String | *Optional*  | `Dockerfile`
 `image_name`      | String | *Optional*  | `${{ github.repository }}`
-`docker_build_args` | String | *Optional
+`docker_build_args` | String | *Optional*
 
 
 Usage:
