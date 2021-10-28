@@ -1,18 +1,19 @@
 
 ## Build & Deploy Docker Image to Artifactory
 
-`Required` parameters:
-- `artifactory_registry:` -> registry url
-- `artifactory_username:` -> username
-- `artifactory_api_key:`  -> password
+### Parameters: 
+Name | Type |        | Default |
+---  | ---  | ---------- | ------- |
+`artifactory_registry`| String | Required
+`artifactory_username` | String | Required
+`artifactory_api_key` | String | Required
+`dockerfile_path` | String | *Optional*  | `Dockerfile`
+`image_name`      | String | *Optional*  | `${{ github.repository }}`
+`docker_build_args` | String | *Optional
 
-`Optional` parameters:
-- `dockerfile_path:`   -> location of dockerfile(s)
-- `image_name:`        -> specify image name to deploy
-- `docker_build_args:` -> any build arguments
 
 Usage:
-```
+```yaml
 jobs:
   build-deploy:
     runs-on: sw-rancher-runnerset
