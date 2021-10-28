@@ -24,9 +24,9 @@ jobs:
           artifactory_registry: ${{ secrets.ARTIFACTORY_REGISTRY }}
           artifactory_username: ${{ secrets.ARTIFACTORY_USERNAME }}
           artifactory_api_key: ${{ secrets.ARTIFACTORY_API_KEY }}
-          dockerfile_path: docker/Dockerfile
-          image_name: TestDeleteme/TestDeleteme
+          dockerfile_path: # optional docker/Dockerfile
+          image_name: # optional image_name/image
           docker_build_args: |
-            args1=1
-            args2=2
+            # optional args1=1
+            # optional args2=2
 ```
