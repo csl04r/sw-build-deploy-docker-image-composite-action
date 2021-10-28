@@ -1,5 +1,4 @@
 
-# Composite Action  
 ## Build & Deploy Docker Image to Artifactory
 
 `Required` parameters:
