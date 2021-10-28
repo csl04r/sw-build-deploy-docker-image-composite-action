@@ -1,5 +1,6 @@
 
-# Composite Action - Build & Deploy Docker Image to Artifactory
+# Composite Action  
+## Build & Deploy Docker Image to Artifactory
 
 `Required` parameters:
 - `artifactory_registry:` -> registry url
