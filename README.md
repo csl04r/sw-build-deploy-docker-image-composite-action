@@ -27,10 +27,10 @@ jobs:
           artifactory_username: ${{ secrets.ARTIFACTORY_USERNAME }}
           artifactory_api_key: ${{ secrets.ARTIFACTORY_API_KEY }}
           # optional
-          dockerfile_path: docker/Dockerfile
-          image_name: image_name/image
-          buildcontext: .
-          docker_build_args: |
-            args1=1
-            args2=2
+          # dockerfile_path: docker/Dockerfile
+          # image_name: image_name/image
+          # buildcontext: .
+          # docker_build_args: |
+            # args1=1
+            # args2=2
 ```
