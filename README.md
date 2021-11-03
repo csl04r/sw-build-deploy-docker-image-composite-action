@@ -9,8 +9,8 @@ Name | Type |        | Default |
 `artifactory_api_key` | Secret | Required*
 `dockerfile_path` | Path | *Optional*  | `Dockerfile`
 `image_name`      | String | *Optional*  | `${{ github.repository }}`
-`docker_build_args` | String | *Optional*
 `buildcontext` | Path | *Optional* | `.`
+`docker_build_args` | String | *Optional*
 
 
 Usage:
