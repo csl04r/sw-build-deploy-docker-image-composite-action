@@ -104,12 +104,12 @@ runs:
         deployment_id: ${{ steps.deployment.outputs.deployment_id }}
    
     - name: Update deployment status (failure)
-       if: failure()
-       uses: sherwin-williams-co/sw-deployment-status@master
-       with:
-         token: ${{ inputs.github_token }}
-         state: "failure"
-         deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+      if: failure()
+      uses: sherwin-williams-co/sw-deployment-status@master
+      with:
+        token: ${{ inputs.github_token }}
+        state: "failure"
+        deployment_id: ${{ steps.deployment.outputs.deployment_id }}
          
 branding:
   icon: git-branch
