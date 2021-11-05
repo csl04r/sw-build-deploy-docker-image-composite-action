@@ -35,6 +35,12 @@ inputs:
     description: 'Dockerfile Build Arguments'
     default: '${{github.repository}}'
     required: false
+  
+  github_token:
+    description: 'Github Token'
+    default: ${{ github.TOKEN }}
+    required: false
+    
 
 runs:
   using: "composite"
@@ -60,7 +66,7 @@ runs:
       uses: sherwin-williams-co/sw-deployment-action@main
       id: deployment
       with:
-        token: "${{github.token}}"
+        token: ${{ inputs.github_token }}
         description:  "Deploying build artifact into artifactory#${{github.RUN_NUMBER}}"
         environment: "build"
 
@@ -93,7 +99,7 @@ runs:
         if: success()
         uses: sherwin-williams-co/sw-deployment-status@master
         with:
-          token: "${{ github.token  }}"
+          token: ${{ inputs.github_token }}
           state: "success"
           deployment_id: ${{ steps.deployment.outputs.deployment_id }}
      
@@ -101,7 +107,7 @@ runs:
         if: failure()
         uses: sherwin-williams-co/sw-deployment-status@master
         with:
-          token: "${{ github.token }}"
+          token: ${{ inputs.github_token }}
           state: "failure"
           deployment_id: ${{ steps.deployment.outputs.deployment_id }}
           
