@@ -95,22 +95,22 @@ runs:
           ${{inputs.artifactory_registry}}/${{steps.lowercasereponame.outputs.git_repo_name}}:${{ github.RUN_NUMBER }}
           ${{inputs.artifactory_registry}}/${{steps.lowercasereponame.outputs.git_repo_name}}:latest
       
-      - name: Update deployment status (success)
-        if: success()
-        uses: sherwin-williams-co/sw-deployment-status@master
-        with:
-          token: ${{ inputs.github_token }}
-          state: "success"
-          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
-     
-     - name: Update deployment status (failure)
-        if: failure()
-        uses: sherwin-williams-co/sw-deployment-status@master
-        with:
-          token: ${{ inputs.github_token }}
-          state: "failure"
-          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
-          
+    - name: Update deployment status (success)
+      if: success()
+      uses: sherwin-williams-co/sw-deployment-status@master
+      with:
+        token: ${{ inputs.github_token }}
+        state: "success"
+        deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+   
+    - name: Update deployment status (failure)
+       if: failure()
+       uses: sherwin-williams-co/sw-deployment-status@master
+       with:
+         token: ${{ inputs.github_token }}
+         state: "failure"
+         deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+         
 branding:
   icon: git-branch
   color: white
