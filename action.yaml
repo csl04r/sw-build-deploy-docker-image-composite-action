@@ -35,11 +35,6 @@ inputs:
     description: 'Dockerfile Build Arguments'
     default: '${{github.repository}}'
     required: false
-    
-# secrets:
-#   artifactory_api_key:
-#     description: 'Artifactory API KEY'
-#     required: true
 
 runs:
   using: "composite"
@@ -59,6 +54,14 @@ runs:
       with:
         endpoint: builders
         driver-opts: image=docker.artifactory.sherwin.com/sherwin-williams-co/sw-moby-buildkit:5
+        
+    - name: Create GitHub deployment
+      uses: sherwin-williams-co/sw-deployment-action@main
+      id: deployment
+      with:
+        token: "${{github.token}}"
+        description:  "Deploying build artifact into artifactory#${{github.RUN_NUMBER}}"
+        environment: "build"
 
     - name: Log in to artifactory docker registry
       uses: docker/login-action@v1
@@ -73,6 +76,7 @@ runs:
         repoName=`echo "${{inputs.image_name}}" | tr '[:upper:]' '[:lower:]'`
         echo "::set-output name=git_repo_name::${repoName}"
       shell: bash
+      
     - name: Build and publish container image
       uses: docker/build-push-action@v2
       with:
@@ -83,8 +87,23 @@ runs:
         tags: |
           ${{inputs.artifactory_registry}}/${{steps.lowercasereponame.outputs.git_repo_name}}:${{ github.RUN_NUMBER }}
           ${{inputs.artifactory_registry}}/${{steps.lowercasereponame.outputs.git_repo_name}}:latest
-
-
+      
+      - name: Update deployment status (success)
+        if: success()
+        uses: sherwin-williams-co/sw-deployment-status@master
+        with:
+          token: "${{ github.token  }}"
+          state: "success"
+          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+     
+     - name: Update deployment status (failure)
+        if: failure()
+        uses: sherwin-williams-co/sw-deployment-status@master
+        with:
+          token: "${{ github.token }}"
+          state: "failure"
+          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+          
 branding:
   icon: git-branch
   color: white
