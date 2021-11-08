@@ -7,9 +7,9 @@ Name | Type |        | Default |
 `artifactory_registry`| Secret | Required*
 `artifactory_username` | Secret | Required*
 `artifactory_api_key` | Secret | Required*
-`github_token` | String | *Optional* | `${{ GITHUB.TOKEN }}`
+`github_token` | String | *Optional* | `${{ github.TOKEN }}`
 `dockerfile_path` | Path | *Optional*  | `Dockerfile`
-`image_name`      | String | *Optional*  | `${{ GITHUB.REPOSITORY }}`
+`image_name`      | String | *Optional*  | `${{ github.REPOSITORY }}`
 `buildcontext` | Path | *Optional* | `.`
 `docker_build_args` | String | *Optional*
 
@@ -27,7 +27,7 @@ jobs:
           artifactory_username: ${{ secrets.ARTIFACTORY_USERNAME }}
           artifactory_api_key: ${{ secrets.ARTIFACTORY_API_KEY }}
           # Optional
-          # github_token: ${{ GITHUB.TOKEN }}
+          # github_token: ${{ github.TOKEN }}
           # dockerfile_path: docker/Dockerfile
           # image_name: image_name/image
           # buildcontext: .
