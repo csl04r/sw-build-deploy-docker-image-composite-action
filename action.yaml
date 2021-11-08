@@ -33,7 +33,7 @@ inputs:
     
   image_name:
     description: 'Dockerfile Build Arguments'
-    default: '${{github.repository}}'
+    default: ${{ github.REPOSITORY }}
     required: false
   
   github_token:
