@@ -8,16 +8,16 @@ inputs:
     default: '.'
     required: false
 
-  artifactory_registry:
+  image_registry:
     description: 'Artifactory URL'
     default: 'docker.artifactory.sherwin.com'
     required: false
 
-  artifactory_username:
+  image_registry_username:
     description: 'Artifactory Username'
     required: true
 
-  artifactory_api_key:
+  image_registry_api_key:
     description: 'Artifactory API KEY'
     required: true
     
@@ -73,9 +73,9 @@ runs:
     - name: Log in to artifactory docker registry
       uses: docker/login-action@v1
       with:
-        registry: '${{ inputs.artifactory_registry }}'
-        username: '${{ inputs.artifactory_username }}'
-        password: '${{ inputs.artifactory_api_key }}'
+        registry: '${{ inputs.image_registry }}'
+        username: '${{ inputs.image_registry_username }}'
+        password: '${{ inputs.image_registry_api_key }}'
 
     - name: convert reponame to lowercase
       id: lowercasereponame
