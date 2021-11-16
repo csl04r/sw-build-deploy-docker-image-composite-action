@@ -1,5 +1,5 @@
 
-## Build & Deploy Docker Image to Artifactory
+## Build & Deploy Docker Image to Registry
 
 ### Parameters: 
 Name | Type |        | Default |
