@@ -4,9 +4,9 @@
 ### Parameters: 
 Name | Type |        | Default |
 ---  | ---  | ---------- | ------- |
-`artifactory_registry`| Secret | Required*
-`artifactory_username` | Secret | Required*
-`artifactory_api_key` | Secret | Required*
+`image_registry`| Secret | Required*
+`image_registry_username` | Secret | Required*
+`image_registry_api_key` | Secret | Required*
 `github_token` | String | *Optional* | `${{ github.TOKEN }}`
 `dockerfile_path` | Path | *Optional*  | `Dockerfile`
 `image_name`      | String | *Optional*  | `${{ github.REPOSITORY }}`
@@ -23,9 +23,9 @@ jobs:
       
       - uses: sherwin-williams-co/sw-build-deploy-docker-image-composite-action@main
         with:
-          artifactory_registry: ${{ secrets.ARTIFACTORY_REGISTRY }}
-          artifactory_username: ${{ secrets.ARTIFACTORY_USERNAME }}
-          artifactory_api_key: ${{ secrets.ARTIFACTORY_API_KEY }}
+          image_registry: ${{ secrets.ARTIFACTORY_REGISTRY }}
+          image_registry_username: ${{ secrets.ARTIFACTORY_USERNAME }}
+          image_registry_api_key: ${{ secrets.ARTIFACTORY_API_KEY }}
           # Optional
           # github_token: ${{ github.TOKEN }}
           # dockerfile_path: docker/Dockerfile
