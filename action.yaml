@@ -92,8 +92,8 @@ runs:
         file: '${{inputs.dockerfile_path}}'
         build-args: '${{inputs.docker_build_args}}'
         tags: |
-          ${{inputs.artifactory_registry}}/${{steps.lowercasereponame.outputs.git_repo_name}}:${{ github.RUN_NUMBER }}
-          ${{inputs.artifactory_registry}}/${{steps.lowercasereponame.outputs.git_repo_name}}:latest
+          ${{inputs.image_registry}}/${{steps.lowercasereponame.outputs.git_repo_name}}:${{ github.RUN_NUMBER }}
+          ${{inputs.image_registry}}/${{steps.lowercasereponame.outputs.git_repo_name}}:latest
       
     - name: Update deployment status (success)
       if: success()
