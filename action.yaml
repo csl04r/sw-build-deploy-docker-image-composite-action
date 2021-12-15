@@ -51,6 +51,8 @@ runs:
         if  docker context inspect builders ;
         then
           echo "Docker Builders context exist!!"
+          docker context rm builders
+          docker context create builders
         else
           docker context create builders
         fi
@@ -110,6 +112,11 @@ runs:
         token: ${{ inputs.github_token }}
         state: "failure"
         deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+      
+     - name: Remove docker context
+       if: always()
+       run: |
+         docker context rm builders
          
 branding:
   icon: git-branch
