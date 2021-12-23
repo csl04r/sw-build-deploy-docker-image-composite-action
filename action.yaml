@@ -113,11 +113,11 @@ runs:
         state: "failure"
         deployment_id: ${{ steps.deployment.outputs.deployment_id }}
       
-     - name: Remove docker context
-       if: always()
-       run: |
-         docker context rm builders
-       shell: bash
+    - name: Remove docker context
+      if: always()
+      run: |
+        docker context rm builders
+      shell: bash
        
 branding:
   icon: git-branch
