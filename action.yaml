@@ -117,7 +117,8 @@ runs:
        if: always()
        run: |
          docker context rm builders
-         
+       shell: bash
+       
 branding:
   icon: git-branch
   color: white
